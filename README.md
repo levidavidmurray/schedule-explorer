@@ -1,4 +1,4 @@
-# schedule-explorer
+# Schedule Explorer
 
 Based on [Julian Herbst's "Schedule Demo Explorer" Dribble](https://dribbble.com/shots/9357635-Schedule-Demo-Exploration?_=1578515130397#)
 
