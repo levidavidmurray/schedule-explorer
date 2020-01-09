@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #5290F4;
+  --color-primary-tbd: #4B82E1;
+  --color-primary-active: #1F86FF;
+  --color-primary-hover: #4073C4;
+
+  --color-secondary: #A3BFDE;
+  --color-lavender: #DEEBFF;
+  --color-background: #F8F7FB;
+  --color-gray: #9BA0AA;
+  --color-slategray: #3D3E47;
+  --color-border-disabled: rgba(148, 153, 163, 0.21);
+
+  // Pixel Sizes
+  --border-radius: 8px;
+  --opacity-disabled: 0.45;
+
+  // Borders
+  --border: 1px solid var(--color-border-disabled);
+}

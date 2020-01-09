@@ -1,0 +1,10 @@
+@mixin active-button-effect {
+  transition: transform 0.2s ease;
+  transform: scale(1);
+
+  &:enabled {
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

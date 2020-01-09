@@ -1,0 +1,26 @@
+.fs-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.center-h {
+    justify-content: center;
+  }
+
+  &.center-v {
+    align-items: center;
+  }
+}

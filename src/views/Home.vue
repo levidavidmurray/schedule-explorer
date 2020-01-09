@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <ScheduleExplorer/>
+  <div class="fs-wrapper no-scroll flex center">
+    <schedule-explorer/>
   </div>
 </template>
 
