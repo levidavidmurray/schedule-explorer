@@ -1,5 +1,5 @@
 <template>
-    <button :class="fill" v-bind="$props" :style="{padding: `0 ${pad}`}">
+    <button :class="[fill, 'base-button']" v-bind="$props" :style="styleOverride">
         <span class="button-text">
             <slot></slot>
         </span>
@@ -14,6 +14,14 @@
     export default class BaseButton extends Vue {
         @Prop({default: 'primary'}) public readonly fill!: string;
         @Prop({default: '16px'}) public readonly pad!: string;
+        @Prop({default: '40px'}) public readonly height!: string;
+
+        get styleOverride() {
+            return {
+                padding: `0 ${this.pad}`,
+                height: this.height,
+            };
+        }
     }
 </script>
 
