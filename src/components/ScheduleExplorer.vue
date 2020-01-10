@@ -1,9 +1,9 @@
 <template>
   <div class="schedule-wrapper">
-    <aside-info/>
+    <aside-info :show-bottom="asideBottomVisible"/>
     <base-footer>
       <base-button disabled fill="secondary"><i class="mdi mdi-arrow-left"></i> Back</base-button>
-      <base-button pad="32px">Next Step</base-button>
+      <base-button pad="32px" @click="toggleAsideBottom()">Next Step</base-button>
     </base-footer>
   </div>
 </template>
@@ -16,6 +16,13 @@
     components: {BaseFooter, AsideInfo},
   })
   export default class ScheduleExplorer extends Vue {
+
+    public asideBottomVisible: boolean = false;
+
+    public toggleAsideBottom() {
+      this.asideBottomVisible = !this.asideBottomVisible;
+    }
+
   }
 </script>
 

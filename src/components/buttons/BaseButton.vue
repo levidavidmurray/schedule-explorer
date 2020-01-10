@@ -1,5 +1,5 @@
 <template>
-    <button :class="[fill, 'base-button']" v-bind="$props" :style="styleOverride">
+    <button @click="$emit('click')" :class="[fill, 'base-button']" v-bind="$props" :style="styleOverride">
         <span class="button-text">
             <slot></slot>
         </span>

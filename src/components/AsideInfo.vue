@@ -9,7 +9,7 @@
       </base-button>
     </div>
 
-    <div class="bottom-info">
+    <div :class="['bottom-info slide-in-anim', bottomVisible]">
       <div class="item date">
         <span class="title">Date</span>
         <span class="data">9. January 2020</span>
@@ -27,15 +27,22 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class AsideInfo extends Vue {
+
+    @Prop({default: false}) public readonly showBottom!: boolean;
+
+    get bottomVisible(): string {
+      return this.showBottom ? 'visible' : '';
+    }
 
   }
 </script>
 
 <style scoped lang="scss">
+
   .aside-info {
     grid-column: 1;
     grid-row: span 1;
@@ -43,6 +50,7 @@
     display: grid;
     grid-template-rows: 32px 25% auto 30% 32px;
     grid-template-columns: 24px auto 24px;
+    overflow: hidden;
 
     .top-info {
       grid-column: 2;
@@ -69,6 +77,16 @@
 
       .item {
         font-weight: bold;
+
+        &.time {
+          .data {
+            display: flex;
+
+            .tz {
+              margin-left: 8px;
+            }
+          }
+        }
 
         .title {
           display: block;
