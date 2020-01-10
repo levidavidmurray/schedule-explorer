@@ -51,6 +51,7 @@
     grid-template-rows: 32px 25% auto 30% 32px;
     grid-template-columns: 24px auto 24px;
     overflow: hidden;
+    min-width: 244px;
 
     .top-info {
       grid-column: 2;
@@ -58,11 +59,14 @@
 
       .base-button {
         margin-top: 4px;
-      }
 
-      .schedule-module-name {
-        color: var(--color-gray-light);
-        margin-bottom: 4px;
+        /deep/i {
+          color: var(--color-lavender);
+          background-color: var(--color-primary-active);
+          border-radius: 3px;
+          padding: 1px;
+          font-size: 15px;
+        }
       }
     }
 
@@ -84,6 +88,7 @@
 
             .tz {
               margin-left: 8px;
+              font-weight: normal;
             }
           }
         }

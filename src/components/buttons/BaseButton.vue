@@ -1,77 +1,108 @@
 <template>
-    <button @click="$emit('click')" :class="[fill, 'base-button']" v-bind="$props" :style="styleOverride">
+	<button @click="$emit('click')" :class="computedClasses" v-bind="$props" :style="styleOverride">
         <span class="button-text">
+			<i v-if="iconButton" :class="`mdi ${this.icon}`"></i>
             <slot></slot>
         </span>
-    </button>
+	</button>
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-    import {Component, Prop} from 'vue-property-decorator';
+  import Vue from 'vue';
+  import {Component, Prop} from 'vue-property-decorator';
 
-    @Component
-    export default class BaseButton extends Vue {
-        @Prop({default: 'primary'}) public readonly fill!: string;
-        @Prop({default: '16px'}) public readonly pad!: string;
-        @Prop({default: '40px'}) public readonly height!: string;
+  @Component
+  export default class BaseButton extends Vue {
+    @Prop({default: 'primary'}) public readonly fill!: string;
+    @Prop({type: Boolean}) public readonly iconButton!: boolean;
+    @Prop({type: String}) public readonly icon!: string;
+    @Prop({default: '16px'}) public readonly pad!: string;
+    @Prop({default: '40px'}) public readonly height!: string;
 
-        get styleOverride() {
-            return {
-                padding: `0 ${this.pad}`,
-                height: this.height,
-            };
-        }
+    get computedClasses() {
+      const classes = ['base-button', this.fill];
+      if (this.iconButton) {
+        classes.push('icon-button');
+      }
+      return classes;
+
     }
+
+    get styleOverride() {
+      if (this.iconButton) {
+        return {
+          padding: '0 4px',
+          height: '28px',
+        };
+      }
+
+
+      return {
+        padding: `0 ${this.pad}`,
+        height: this.height,
+      };
+    }
+  }
 </script>
 
 <style scoped lang="scss">
-    @import '../../assets/styles/_mixins.scss';
+	@import '../../assets/styles/_mixins.scss';
 
-    button {
-        @include active-button-effect;
+	button {
+		@include active-button-effect;
 
-        height: 40px;
-        border: none;
-        background-color: var(--color-primary);
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-weight: 600;
-        outline: none;
+		height: 40px;
+		border: none;
+		background-color: var(--color-primary);
+		border-radius: var(--border-radius);
+		cursor: pointer;
+		font-weight: 600;
+		outline: none;
 
-        .button-text {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+		.button-text {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-            & > * {
-                &:first-child {
-                    margin-right: 6px;
-                }
-            }
+			& > * {
+				&:first-child {
+					margin-right: 6px;
+				}
+			}
 
-            .mdi {
-                font-size: 18px;
-                line-height: 1;
-            }
-        }
+			.mdi {
+				font-size: 18px;
+				line-height: 1;
+			}
+		}
 
 
-        &[disabled] {
-            opacity: var(--opacity-disabled);
-            cursor: default;
-        }
+		&[disabled] {
+			opacity: var(--opacity-disabled);
+			cursor: default;
+		}
 
-        &.primary {
-            background-color: var(--color-primary-active);
-            color: white;
-        }
+		&.primary {
+			background-color: var(--color-primary-active);
+			color: white;
+		}
 
-        &.secondary {
-            background-color: var(--color-lavender);
-            color: var(--color-primary-active);
-        }
-    }
+		&.secondary {
+			background-color: var(--color-lavender);
+			color: var(--color-primary-active);
+		}
+
+		&.icon-button {
+			border-radius: 6px;
+
+			.button-text {
+				i {
+					margin: 0;
+					font-size: 22px;
+				}
+			}
+		}
+	}
 </style>

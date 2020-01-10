@@ -1,6 +1,9 @@
 <template>
   <div class="schedule-wrapper">
     <aside-info :show-bottom="asideBottomVisible"/>
+    <workflow>
+        <date-time-select/>
+    </workflow>
     <base-footer>
       <base-button disabled fill="secondary"><i class="mdi mdi-arrow-left"></i> Back</base-button>
       <base-button pad="32px" @click="toggleAsideBottom()">Next Step</base-button>
@@ -12,8 +15,11 @@
   import { Component, Vue } from 'vue-property-decorator';
   import AsideInfo from '@/components/AsideInfo.vue';
   import BaseFooter from '@/components/BaseFooter.vue';
+  import Workflow from '@/components/workflow/Workflow.vue';
+  import DateTimeSelect from '@/components/workflow/DateTimeSelect.vue';
+
   @Component({
-    components: {BaseFooter, AsideInfo},
+    components: {DateTimeSelect, Workflow, BaseFooter, AsideInfo},
   })
   export default class ScheduleExplorer extends Vue {
 
@@ -33,7 +39,7 @@
     background-color: white;
     border-radius: 16px;
     display: grid;
-    grid-template-columns: 288px auto;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 72px;
     overflow: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 0 15px rgba(0, 0, 0, 0.05);
