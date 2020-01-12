@@ -26,6 +26,7 @@
 		grid-template-rows: 32px 28px auto;
 		background-color: white;
 		width: 100%;
+		height: 100%;
 
 		h3 {
 			grid-column: 2;
