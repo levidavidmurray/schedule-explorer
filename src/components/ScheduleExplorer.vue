@@ -1,12 +1,12 @@
 <template>
   <div class="schedule-wrapper">
-    <aside-info :show-bottom="asideBottomVisible"/>
+    <aside-info :date="selectedDate"/>
     <workflow>
-        <date-time-select/>
+        <date-time-select @date-selected="dateSelected"/>
     </workflow>
     <base-footer>
       <base-button disabled fill="secondary"><i class="mdi mdi-arrow-left"></i> Back</base-button>
-      <base-button pad="32px" @click="toggleAsideBottom()">Next Step</base-button>
+      <base-button pad="32px" disabled>Next Step</base-button>
     </base-footer>
   </div>
 </template>
@@ -17,16 +17,16 @@
   import BaseFooter from '@/components/BaseFooter.vue';
   import Workflow from '@/components/workflow/Workflow.vue';
   import DateTimeSelect from '@/components/workflow/DateTimeSelect.vue';
+  import {Moment} from 'moment';
 
   @Component({
     components: {DateTimeSelect, Workflow, BaseFooter, AsideInfo},
   })
   export default class ScheduleExplorer extends Vue {
+    public selectedDate: Moment | null = null;
 
-    public asideBottomVisible: boolean = false;
-
-    public toggleAsideBottom() {
-      this.asideBottomVisible = !this.asideBottomVisible;
+    public dateSelected(date: Moment) {
+      this.selectedDate = date;
     }
 
   }
