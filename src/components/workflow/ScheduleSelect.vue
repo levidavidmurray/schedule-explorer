@@ -1,20 +1,22 @@
 <template>
-	<div class="date-time-select">
-		<calendar/>
-		<button-list ref="buttonList">
-			<base-button
-					class="time-button"
-					v-for="(slot, index) in scheduleSlots"
-					@click="selectTime(slot.time)"
-					:fill="getFill(slot.time)"
-					:disabled="!slot.available"
-					:key="index"
-					height="48px"
-			>
-				{{ slot.time.format('H:mm') }}
-			</base-button>
-		</button-list>
-	</div>
+	<workflow header="Select a Date & Time">
+		<div class="date-time-select">
+			<calendar/>
+			<button-list ref="buttonList">
+				<base-button
+						class="time-button"
+						v-for="(slot, index) in scheduleSlots"
+						@click="selectTime(slot.time)"
+						:fill="getFill(slot.time)"
+						:disabled="!slot.available"
+						:key="index"
+						height="48px"
+				>
+					{{ slot.time.format('H:mm') }}
+				</base-button>
+			</button-list>
+		</div>
+	</workflow>
 </template>
 
 <script lang="ts">
@@ -25,9 +27,10 @@
   import moment, {Moment} from 'moment';
   import ScheduleStore from '@/store/modules/schedule.store';
   import {ScheduleSlot} from '@/components/calendar/types';
+  import Workflow from '@/components/workflow/Workflow.vue';
 
   @Component({
-    components: {ButtonList, Calendar},
+    components: {Workflow, ButtonList, Calendar},
   })
   export default class DateTimeSelect extends Vue {
     public scheduleSlots: ScheduleSlot[] = [];

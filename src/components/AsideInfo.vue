@@ -28,7 +28,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
+  import {Component} from 'vue-property-decorator';
   import ScheduleStore from '@/store/modules/schedule.store';
 
   @Component

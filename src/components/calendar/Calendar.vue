@@ -42,7 +42,6 @@
 
     public selectDate(date: Moment) {
       ScheduleStore.setDate(date);
-      this.$forceUpdate();
     }
 
     public dateStyles(date: Moment) {
