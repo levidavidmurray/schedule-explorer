@@ -19,7 +19,7 @@
 				<span class="data placeholder" v-if="!time">Please select</span>
 				<span class="data" v-else>
 					{{ displayTime }}
-					<span class="tz">(GMT +1)</span>
+					<span class="tz">(GMT {{gmtOffset}})</span>
 				</span>
 			</div>
 		</div>
@@ -56,6 +56,18 @@
         const start = this.time.format('HH:mm');
         const end = this.time.clone().add(15, 'minutes').format('HH:mm');
         return `${start} - ${end}`;
+      }
+    }
+
+    get gmtOffset() {
+      if (this.time) {
+        const offset = parseInt(this.time.format('Z'), 10);
+
+        if (offset < 0) {
+          return offset.toString();
+        }
+
+        return `+${offset.toString()}`;
       }
     }
 
