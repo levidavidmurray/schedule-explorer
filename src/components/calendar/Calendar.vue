@@ -23,14 +23,14 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import moment, {Moment} from 'moment';
+  import moment, {Moment, weekdaysShort} from 'moment';
   import IconButton from '@/components/buttons/IconButton.vue';
   import ScheduleStore from '@/store/modules/schedule.store';
 
   @Component({components: {IconButton}})
   export default class Calendar extends Vue {
     public currentMonth: Moment = moment();
-    public days: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    public days: string[] = weekdaysShort();
 
     public decrementMonth() {
       this.currentMonth = this.currentMonth.clone().subtract(1, 'months');

@@ -1,12 +1,12 @@
 <template>
   <div class="schedule-wrapper">
-    <aside-info :date="selectedDate"/>
+    <aside-info/>
     <workflow>
-        <date-time-select @date-selected="dateSelected"/>
+        <date-time-select/>
     </workflow>
     <base-footer>
-      <base-button disabled fill="secondary"><i class="mdi mdi-arrow-left"></i> Back</base-button>
-      <base-button pad="32px" disabled>Next Step</base-button>
+      <base-button disabled fill="secondary"><i class="mdi mdi-arrow-left"></i>Back</base-button>
+      <base-button pad="32px" :disabled="!canSubmit">Next Step</base-button>
     </base-footer>
   </div>
 </template>
@@ -17,18 +17,15 @@
   import BaseFooter from '@/components/BaseFooter.vue';
   import Workflow from '@/components/workflow/Workflow.vue';
   import DateTimeSelect from '@/components/workflow/DateTimeSelect.vue';
-  import {Moment} from 'moment';
+  import ScheduleStore from '@/store/modules/schedule.store';
 
   @Component({
     components: {DateTimeSelect, Workflow, BaseFooter, AsideInfo},
   })
   export default class ScheduleExplorer extends Vue {
-    public selectedDate: Moment | null = null;
-
-    public dateSelected(date: Moment) {
-      this.selectedDate = date;
+    get canSubmit() {
+      return ScheduleStore.time && ScheduleStore.date;
     }
-
   }
 </script>
 
