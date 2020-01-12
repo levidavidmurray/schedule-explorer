@@ -34,6 +34,16 @@ class ScheduleModule extends VuexModule {
   public setTime(time: Moment) {
     this.selectedTime = time;
   }
+
+  @Mutation
+  public clearTime() {
+    this.selectedTime = null;
+  }
+
+  @Mutation
+  public clearDate() {
+    this.selectedDate = null;
+  }
 }
 
 export default getModule(ScheduleModule);

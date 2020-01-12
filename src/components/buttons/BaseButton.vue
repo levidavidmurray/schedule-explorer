@@ -58,6 +58,7 @@
 		cursor: pointer;
 		font-weight: 600;
 		outline: none;
+		transition: all 0.2s ease;
 
 		.button-text {
 			width: 100%;
@@ -92,6 +93,18 @@
 		&.secondary {
 			background-color: var(--color-lavender);
 			color: var(--color-primary-active);
+		}
+
+		&.outline {
+			background-color: transparent;
+			border: 1px solid var(--color-gray-light);
+			color: var(--color-primary-active);
+			font-weight: normal;
+			font-size: 16px;
+
+			&[disabled] {
+				color: var(--color-gray-dark);
+			}
 		}
 
 		&.icon-button {

@@ -9,6 +9,7 @@
 		</div>
 		<div class="calendar-grid">
 			<span class="day" v-for="day in days">{{ day }}</span>
+			<span v-for="_ in blankDays"></span>
 			<div v-for="date in dates" :class="dateStyles(date)">
 				<div class="date-activatable" @click="selectDate(date)">
 					<div class="bg"></div>
@@ -26,10 +27,6 @@
   import IconButton from '@/components/buttons/IconButton.vue';
   import ScheduleStore from '@/store/modules/schedule.store';
 
-  /*
-  	TODO: Calendar day padding so the start of the month lines up with the proper day
-  	TODO: Schedule time select
-   */
   @Component({components: {IconButton}})
   export default class Calendar extends Vue {
     public currentMonth: Moment = moment();
@@ -60,6 +57,19 @@
       return ScheduleStore.selectedDate!;
     }
 
+    get blankDays() {
+      const firstDate = this.currentMonth.clone().startOf('month');
+      const blankArr: string[] = [];
+
+      for (const day of this.days) {
+        if (firstDate.format('ddd') === day) {
+          return blankArr;
+        }
+
+        blankArr.push(day);
+      }
+    }
+
     get dates() {
       const datesArr: Moment[] = [];
       for (let i = 1; i <= this.currentMonth.daysInMonth(); i++) {
@@ -85,7 +95,7 @@
 		.month-select {
 			display: flex;
 			justify-content: space-between;
-			margin-bottom: 16px;
+			margin-bottom: 8px;
 
 			.month-label {
 				font-size: 22px;
@@ -105,7 +115,7 @@
 		.calendar-grid {
 			flex-grow: 1;
 			display: grid;
-			grid-template-columns: repeat(7, 42px);
+			grid-template-columns: repeat(7, 1fr);
 			grid-template-rows: repeat(6, 42px);
 			grid-column-gap: 4px;
 			grid-row-gap: 4px;
@@ -144,7 +154,7 @@
 					}
 
 					span {
-						transition: color 0.1s 0.1s ease, transform 0.2s ease-out;
+						user-select: none;
 						position: relative;
 						z-index: 2;
 					}
@@ -165,6 +175,7 @@
 				&.selected {
 					.date-activatable {
 						span {
+							transition: color 0.1s 0.1s ease, transform 0.2s ease-out;
 							color: white;
 							animation: date-select-anim 0.4s ease-out;
 						}
