@@ -78,6 +78,15 @@ class ScheduleModule extends VuexModule {
   public setPhone(phone: string) {
     this.userInfo.phone = phone;
   }
+
+  @Mutation
+  public clear() {
+    this.selectedDate = null;
+    this.selectedTime = null;
+    this.userInfo.fullName = '';
+    this.userInfo.email = '';
+    this.userInfo.phone = '';
+  }
 }
 
 export default getModule(ScheduleModule);

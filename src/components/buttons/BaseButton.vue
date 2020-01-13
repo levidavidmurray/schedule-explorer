@@ -36,7 +36,6 @@
         };
       }
 
-
       return {
         padding: `0 ${this.pad}`,
         height: this.height,
@@ -56,9 +55,9 @@
 		background-color: var(--color-primary);
 		border-radius: var(--border-radius);
 		cursor: pointer;
-		font-weight: 600;
-		outline: none;
 		transition: all 0.2s ease;
+		outline: none;
+    font-size: 14px;
 
 		.button-text {
 			width: 100%;
@@ -79,13 +78,18 @@
 			}
 		}
 
-
 		&[disabled] {
 			opacity: var(--opacity-disabled);
 			cursor: default;
 		}
 
 		&.primary {
+			background-color: var(--color-primary-active);
+			color: white;
+		}
+
+		&:focus {
+			transform: scale(1.05);
 			background-color: var(--color-primary-active);
 			color: white;
 		}
@@ -106,6 +110,13 @@
 				color: var(--color-gray-dark);
 			}
 		}
+
+    &.transparent {
+      background-color: transparent;
+      border: none;
+      color: var(--color-primary-active);
+      font-weight: normal;
+    }
 
 		&.icon-button {
 			border-radius: 6px;

@@ -18,9 +18,11 @@
 	.button-list {
 		display: flex;
 		flex-direction: column;
-		padding-right: 16px;
+		padding-right: 10px;
 		padding-left: 16px;
 		scroll-behavior: smooth;
+		overflow-x: hidden;
+    overflow-y: scroll;
 
 		& > * {
 			margin-bottom: 8px;

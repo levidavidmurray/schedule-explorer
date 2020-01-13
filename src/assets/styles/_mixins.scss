@@ -8,14 +8,3 @@
     }
   }
 }
-
-@mixin slide-in-anim {
-  transition: transform 0.5s ease, opacity 0.3s ease;
-  transform: translate3d(0, 10px, 0);
-  opacity: 0;
-
-  &.visible {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
