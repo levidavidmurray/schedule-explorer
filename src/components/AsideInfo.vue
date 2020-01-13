@@ -3,7 +3,7 @@
     <div class="top-info">
       <h3 class="schedule-module-name">Walkthrough</h3>
       <h2 class="schedule-module-title">Schedule a demo</h2>
-      <base-button @click="clearDate" pad="8px" fill="secondary" height="32px">
+      <base-button pad="8px" fill="secondary" height="32px">
         <i class="mdi mdi-clock"></i>
         <span>10-20min</span>
       </base-button>
@@ -26,10 +26,6 @@
   export default class AsideInfo extends Vue {
     get date() {
       return ScheduleStore.date!;
-    }
-
-    public clearDate() {
-      ScheduleStore.clearDate();
     }
 
     get time() {
